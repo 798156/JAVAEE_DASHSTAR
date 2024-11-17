@@ -10,74 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d84748c5-5d6f-4cad-929f-09e1f79c4238" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/DashstarApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/handler/ArticleHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/handler/CommentHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/handler/IndexHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/handler/UserHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/handler/处理层（类似servlet）" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/listener/HibernateListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/listener/监听层" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/model/Article.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/model/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/model/request/UserLoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/model/数据库实体层" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/repository/ArticleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/repository/CommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/repository/仓库层" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/security/AuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/security/Secured.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/security/安全框架" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/util/BCryptUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/util/BCrypto笔记" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/util/HibernateUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/util/JwtUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dashstar/util/工具层" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/beans.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/eslint.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/components/Comments.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/components/MarkdownRender.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/components/NavigationBar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/layouts/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/main.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/models/article.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/models/comment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/models/user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/pages/CreateArticlePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/pages/EditArticlePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/pages/HomePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/pages/LogInPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/pages/NotFoundPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/pages/RegisterPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/pages/ShowArticlePage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/router/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/stores/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/stores/site.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/utils/axios.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/vite-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/tsconfig.node.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +235,7 @@
       <workItem from="1731669602556" duration="8000" />
       <workItem from="1731745186857" duration="77000" />
       <workItem from="1731745278940" duration="2118000" />
-      <workItem from="1731806372741" duration="2583000" />
+      <workItem from="1731806372741" duration="4004000" />
     </task>
     <servers />
   </component>
