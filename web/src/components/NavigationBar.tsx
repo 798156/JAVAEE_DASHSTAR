@@ -8,10 +8,10 @@ import {
     Tooltip,
     Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { AccountCircle, Home, Brightness4, Brightness7, Logout } from "@mui/icons-material";
+import {useEffect, useState} from "react";
+import {AccountCircle, Home, Brightness4, Brightness7, Logout} from "@mui/icons-material";
 import useAuthStore from "@/stores/auth.ts";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import useSiteStore from "@/stores/site.ts";
 
 export default function NavigationBar() {
@@ -21,7 +21,7 @@ export default function NavigationBar() {
     const navigator = useNavigate();
     const siteStore = useSiteStore();
     const [showDialog, setShowDialog] = useState(false);
-    const { toggleTheme, isDarkMode } = useSiteStore();
+    const {toggleTheme, isDarkMode} = useSiteStore();
 
     useEffect(() => {
         setArticleTitle(siteStore?.currentTitle);
@@ -32,11 +32,13 @@ export default function NavigationBar() {
         <>
             <AppBar
                 position="sticky"
-                sx={{
-                    backgroundColor: isDarkMode ? "#333" : "#1976d2", // 适配明暗模式
-                    boxShadow: "none",
-                    borderBottom: isDarkMode ? "2px solid #555" : "2px solid #1565c0",
-                }}
+                sx={
+                    {
+                        backgroundColor: isDarkMode ? "#333" : "#1976d2", // 适配明暗模式
+                        boxShadow: "none",
+                        borderBottom: isDarkMode ? "2px solid #555" : "2px solid #1565c0",
+                    }
+                }
             >
                 <Toolbar
                     sx={{
@@ -60,7 +62,7 @@ export default function NavigationBar() {
                                 marginRight: 2,
                             }}
                         >
-                            <Home />
+                            <Home/>
                         </IconButton>
                     </Box>
 
@@ -85,7 +87,7 @@ export default function NavigationBar() {
                         {/* 明暗模式切换按钮 */}
                         <Tooltip title="切换明暗色主题">
                             <IconButton onClick={toggleTheme} color="inherit">
-                                {isDarkMode ? <Brightness7 /> : <Brightness4 />}
+                                {isDarkMode ? <Brightness7/> : <Brightness4/>}
                             </IconButton>
                         </Tooltip>
 
@@ -102,15 +104,15 @@ export default function NavigationBar() {
                                             marginLeft: 2,
                                         }}
                                     >
-                                        <AccountCircle />
+                                        <AccountCircle/>
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="登出">
                                     <IconButton onClick={() => authStore.logout()}
                                                 color="inherit"
-                                                sx={{ marginLeft: 2 }}
+                                                sx={{marginLeft: 2}}
                                     >
-                                        <Logout />
+                                        <Logout/>
                                     </IconButton>
                                 </Tooltip>
                             </>
@@ -145,7 +147,7 @@ export default function NavigationBar() {
                 </Toolbar>
             </AppBar>
             <Dialog open={showDialog} onClose={() => setShowDialog(false)}>
-                <Card sx={{ padding: 2, minWidth: 300 }}>
+                <Card sx={{padding: 2, minWidth: 300}}>
                     <Stack alignItems="center" spacing={2}>
                         <Avatar sx={{
                             width: 56,
@@ -159,17 +161,17 @@ export default function NavigationBar() {
                         <Typography variant="body2" color="text.secondary">
                             密码: {authStore.user?.password}
                         </Typography>
-                        <Divider sx={{ width: "100%" }} />
+                        <Divider sx={{width: "100%"}}/>
 
                         <Typography variant="body2" color="text.secondary"
-                                    sx={{ whiteSpace: "normal", wordBreak: "break-word", textAlign: "center" }}>
+                                    sx={{whiteSpace: "normal", wordBreak: "break-word", textAlign: "center"}}>
                             TOKEN: {authStore.token}
                         </Typography>
                         <Button
                             variant="contained"
                             color="primary"
                             onClick={() => setShowDialog(false)}
-                            sx={{ width: "100%" }}
+                            sx={{width: "100%"}}
                         >
                             关闭
                         </Button>
@@ -177,7 +179,7 @@ export default function NavigationBar() {
                 </Card>
             </Dialog>
 
-            <Toolbar />
+            <Toolbar/>
         </>
     );
 }

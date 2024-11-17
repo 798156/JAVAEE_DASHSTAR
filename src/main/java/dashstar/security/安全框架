@@ -1,0 +1,3 @@
+AdminResource类和getAdminDashboard方法都被@Secured注解标记，
+这意味着只有具有指定角色的用户（例如"ADMIN"或"SUPERUSER"）才能访问这些资源。
+安全过滤器（如AuthenticationFilter）将检查这些角色，并根据用户是否具有适当的权限来允许或拒绝访问。

@@ -10,7 +10,7 @@ export default function Layout(){
             <NavigationBar />
             <Container>
 
-            <Outlet />
+                <Outlet />
             </Container>
         </>
     )
