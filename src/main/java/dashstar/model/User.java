@@ -1,5 +1,6 @@
 package dashstar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class User implements Serializable {
     @Column(name = "nickname")
     private String nickname;
 
+    @JsonIgnore   //不显示password
     @Column(name = "password")
     private String password;
 
