@@ -1,4 +1,3 @@
-// 评论区组件
 
 import { Avatar, Box, Button, Card, Divider, Grid2, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -6,9 +5,11 @@ import { api } from "@/utils/axios.ts";
 import { Comment } from "@/models/comment.ts";
 import useAuthStore from "@/stores/auth.ts";
 
-
-function MyComment({ comment, firstName, created_at }: {
-    comment?: string; firstName?: string; created_at?: number
+function MyComment({ comment, firstName, created_at, onDelete }: {
+    comment?: string;
+    firstName?: string;
+    created_at?: number;
+    onDelete?: () => void;
 }) {
     const date = new Date(Number(created_at) * 1000);
     return (
@@ -25,6 +26,13 @@ function MyComment({ comment, firstName, created_at }: {
                         <Typography variant="caption">{date.toLocaleString()}</Typography>
                     </Box>
                 </Grid2>
+                {onDelete && (
+                    <Grid2>
+                        <Button variant="outlined" color="error" onClick={onDelete}>
+                            删除
+                        </Button>
+                    </Grid2>
+                )}
             </Grid2>
         </>
     );
@@ -32,8 +40,8 @@ function MyComment({ comment, firstName, created_at }: {
 
 export default function Comments({ id }: { id: number }) {
 
-    const [comments, setComments] = useState<Array<Comment>>();
-    const [commentSend, setCommentSend] = useState<string>();
+    const [comments, setComments] = useState<Array<Comment>>([]);
+    const [commentSend, setCommentSend] = useState<string>('');
     const authStore = useAuthStore();
 
     function fetchComments() {
@@ -60,6 +68,15 @@ export default function Comments({ id }: { id: number }) {
         });
     }
 
+    async function deleteComment(commentId: number) {
+        try {
+            await api().delete(`/comments/${commentId}`);
+            fetchComments();
+        } catch (error) {
+            console.error("删除评论失败:", error);
+        }
+    }
+
     return (
         <>
             <Divider>评论区</Divider>
@@ -81,13 +98,14 @@ export default function Comments({ id }: { id: number }) {
                     <Button variant="contained" onClick={submitComment}>评论</Button>
                 </Box>
                 <Grid2>
-                    {comments?.map((oneOfComments, index) => {
+                    {comments.map((oneOfComments, index) => {
                         return (
                             <MyComment
                                 key={index}
                                 comment={oneOfComments.content}
                                 firstName={oneOfComments.user?.username}
                                 created_at={oneOfComments.created_at}
+                                onDelete={() => deleteComment(oneOfComments.id as number)}
                             />
                         );
                     })}

@@ -1,3 +1,4 @@
+
 package dashstar.handler;
 
 import dashstar.model.Article;
@@ -16,6 +17,7 @@ import jakarta.ws.rs.core.SecurityContext;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Path("/comments")  // /api/comments/*
 public class CommentHandler {
@@ -46,4 +48,22 @@ public class CommentHandler {
         return Response.status(Response.Status.OK).entity(res).build();
     }
 
+    @DELETE
+    @Path("/{commentId}")  // /api/comments/{commentId}
+    @Secured({"admin"})
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteComment(@PathParam("commentId") Integer commentId, @Context SecurityContext securityContext) {
+
+        User user = userRepository.findByID(Integer.valueOf(securityContext.getUserPrincipal().getName()));
+
+        Comment comment = commentRepository.findById(commentId);
+
+
+        commentRepository.delete(comment);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("code", Response.Status.OK);
+        return Response.status(Response.Status.OK).entity(res).build();
+    }
 }
