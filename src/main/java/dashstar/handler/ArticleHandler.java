@@ -33,9 +33,12 @@ public class ArticleHandler {
     @GET
     @Path("/")  // /api/articles
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllArticles() {
-        List<Article> articles = articleRepository.findAll();
+    public Response getAllArticles(@QueryParam("page") @DefaultValue("1") int page,//添加分页功能
+                                   @QueryParam("size") @DefaultValue("4") int size) {
+        List<Article> articles = articleRepository.findAll(page, size);//添加分页功能
+        long totalArticles = articleRepository.countAll();//添加分页功能
         Map<String, Object> res = new HashMap<>();
+        res.put("totalArticles", totalArticles);//添加分页功能
         res.put("code", Response.Status.OK);
         res.put("data", articles);
         return Response.status(Response.Status.OK).entity(res).build();

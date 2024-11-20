@@ -1,6 +1,4 @@
-// 主界面.显示所有文章的列表, 可以跳转到 ShowArticlePage.tsx 以显示对应的文章内容. 也可以跳转到登陆或者注册界面.
-
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {
     Box,
     Button,
@@ -14,44 +12,46 @@ import {
     ListItemText,
     Card,
     CardContent,
-    Stack,
+    Stack, Pagination,
 } from "@mui/material";
-import { Article } from "@/models/article.ts";
-import { Create, Add } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import {Article} from "@/models/article.ts";
+import {Create, Add} from "@mui/icons-material";
+import {useNavigate} from "react-router-dom";
 import useAuthStore from "@/stores/auth.ts";
-import { api } from "@/utils/axios.ts";
+import {api} from "@/utils/axios.ts";
 import useSiteStore from "@/stores/site.ts";
 
 export default function HomePage() {
     const authStore = useAuthStore();
     const siteStore = useSiteStore();
     const navigator = useNavigate();
-    const [users, setUsers] = useState<Array<string>>();
-
+    const [users,] = useState<Array<string>>();
     const [articles, setArticles] = useState<Array<Article>>();
+    const [totalArticles, setTotalArticles] = useState(0);
+    const [page, setPage] = useState(1);
+    const [pageSize,] = useState(4);
 
     useEffect(() => {
-        api().get("/articles").then(
+        api().get(`/articles?page=${page}&size=${pageSize}`).then(
             (res) => {
                 const r = res.data;
-                setArticles(r.data?.reverse());
-                let userName = r.data.map((item: any) => item.author.username);
-                userName = userName.reverse();
-                setUsers(userName);
+                setArticles(r.data ? r.data.reverse() : []);
+                setTotalArticles(r.totalArticles || 0);//添加分页功能
             },
         );
-    }, []);
+    }, [page, pageSize]);
 
+    const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };//添加分页功能
 
     return (
-        <Container maxWidth="md" sx={{ py: 4 }}>
-            {/* 页面标题和新建按钮 */}
+        <Container maxWidth="md" sx={{py: 4}}>
             <Stack
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
-                sx={{ mb: 4 }}
+                sx={{mb: 4}}
             >
                 <Typography
                     variant="h4"
@@ -68,7 +68,7 @@ export default function HomePage() {
                 {authStore?.user?.role === "admin" && (
                     <Button
                         variant="contained"
-                        startIcon={<Add />}
+                        startIcon={<Add/>}
                         onClick={() => {
                             navigator("/articles/new");
                             siteStore.setCurrentTitle("新建文章");
@@ -85,15 +85,15 @@ export default function HomePage() {
             </Stack>
 
             {/* 文章列表 */}
-            <Paper elevation={2} sx={{ borderRadius: 2 }}>
+            <Paper elevation={2} sx={{borderRadius: 2}}>
                 {!articles?.length ? (
-                    <Box sx={{ p: 4, textAlign: "center" }}>
-                        <Typography color="text.secondary" sx={{ mb: 2 }}>
+                    <Box sx={{p: 4, textAlign: "center"}}>
+                        <Typography color="text.secondary" sx={{mb: 2}}>
                             还没有写过文章
                         </Typography>
                         <Button
                             variant="outlined"
-                            startIcon={<Add />}
+                            startIcon={<Add/>}
                             onClick={() => {
                                 navigator("/articles/new");
                                 siteStore.setCurrentTitle("新建文章");
@@ -103,10 +103,10 @@ export default function HomePage() {
                         </Button>
                     </Box>
                 ) : (
-                    <List sx={{ p: 0 }}>
+                    <List sx={{p: 0}}>
                         {articles?.map((e: Article, index: number) => (
                             <Box key={e.id}>
-                                {index > 0 && <Divider />}
+                                {index > 0 && <Divider/>}
                                 <ListItem
                                     sx={{
                                         "&:hover": {
@@ -121,7 +121,7 @@ export default function HomePage() {
                                             bgcolor: "transparent",
                                         }}
                                     >
-                                        <CardContent sx={{ p: 2 }}>
+                                        <CardContent sx={{p: 2}}>
                                             <Stack
                                                 direction="row"
                                                 justifyContent="space-between"
@@ -168,7 +168,7 @@ export default function HomePage() {
                                                             },
                                                         }}
                                                     >
-                                                        <Create />
+                                                        <Create/>
                                                     </IconButton>
                                                 )}
                                             </Stack>
@@ -180,6 +180,8 @@ export default function HomePage() {
                     </List>
                 )}
             </Paper>
+            <Pagination count={Math.ceil(totalArticles / pageSize)} page={page} onChange={handlePageChange}
+                        color="primary"/>
         </Container>
     );
 }
